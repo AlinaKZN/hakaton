@@ -7,5 +7,4 @@ public interface ErrorService {
   ErrorMessage getMessage();
 
   void addMessage(String message);
-
 }

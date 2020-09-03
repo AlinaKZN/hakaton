@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import ru.ivanova.editor.model.ErrorMessage;
-import ru.ivanova.editor.model.Profile;
 import ru.ivanova.editor.repository.ErrorRepository;
 import ru.ivanova.editor.service.ErrorService;
 

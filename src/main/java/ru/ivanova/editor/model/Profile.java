@@ -35,5 +35,4 @@ public class Profile {
 
   @CreatedDate
   private Date created;
-
 }
