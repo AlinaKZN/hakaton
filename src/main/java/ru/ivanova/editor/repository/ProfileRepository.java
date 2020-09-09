@@ -8,7 +8,7 @@ import ru.ivanova.editor.model.Profile;
 @Repository
 public interface ProfileRepository extends JpaRepository<Profile, Long> {
 
-  Profile findTopByOrderByCreatedAsc();
+  Profile findTopByOrderByCreatedDesc();
 
   Optional<Profile> findByEmailIgnoreCase(String aEmail);
 }

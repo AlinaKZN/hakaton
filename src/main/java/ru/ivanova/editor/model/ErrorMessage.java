@@ -10,10 +10,12 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.CreatedDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="error")
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class ErrorMessage {
 

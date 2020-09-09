@@ -6,13 +6,13 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.3.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ru.ivanova</groupId>
 	<artifactId>editor</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>editor</name>
-	<description>Spring REST app </description>
+	<description>Profile editor</description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -64,8 +64,11 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
-
-
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>

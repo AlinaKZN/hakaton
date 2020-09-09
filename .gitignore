@@ -1,4 +1,4 @@
-HELP.md
+HOWTO_add_token.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/

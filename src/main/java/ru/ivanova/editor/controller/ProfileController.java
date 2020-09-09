@@ -69,15 +69,16 @@ public class ProfileController {
     return ResponseEntity.ok(profile);
   }
 
-   @GetMapping(value = "/get/{email}")
-   public ResponseEntity getProfile(@PathVariable String email) {
-     log.info(REST_URL + "/get/{}", email);
-     Optional<Profile> profile = profileService.findByEmail(email);
-     if (!profile.isPresent()) {
-       errorService.addMessage(Messages.PROFILE_WITH_ID_NOTFOUND);
-       Map<String, Object> body = Map.of("message", Messages.PROFILE_WITH_EMAIL_NOTFOUND);
-       return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
-     }
-     return ResponseEntity.ok(profile);
-   }
+  @PostMapping(value = "/get")
+  public ResponseEntity getProfile(@RequestBody ProfileDto profileDto) {
+    String email = profileDto.getEmail();
+    log.info(REST_URL + "/get/{}", email);
+    Optional<Profile> profile = profileService.findByEmail(email);
+    if (!profile.isPresent()) {
+      errorService.addMessage(Messages.PROFILE_WITH_ID_NOTFOUND);
+      Map<String, Object> body = Map.of("message", Messages.PROFILE_WITH_EMAIL_NOTFOUND);
+      return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
+    return ResponseEntity.ok(profile);
+  }
 }

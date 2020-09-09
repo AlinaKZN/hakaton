@@ -32,7 +32,7 @@ public class ProfileServiceImpl implements ProfileService {
 
   @Override
   public Profile getLast() {
-    Profile profile = profileRepository.findTopByOrderByCreatedAsc();
+    Profile profile = profileRepository.findTopByOrderByCreatedDesc();
     log.info("Last profile is {}", profile);
     return profile;
   }
