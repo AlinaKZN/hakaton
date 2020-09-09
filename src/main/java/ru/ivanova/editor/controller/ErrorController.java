@@ -12,7 +12,7 @@ import ru.ivanova.editor.service.ErrorService;
 @RestController
 @AllArgsConstructor
 @Slf4j
-public class ErrorRestController {
+public class ErrorController {
 
   private ErrorService errorService;
 

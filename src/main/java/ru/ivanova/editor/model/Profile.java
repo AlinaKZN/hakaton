@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import org.hibernate.annotations.NaturalId;
+import javax.validation.constraints.Email;
 import org.springframework.data.annotation.CreatedDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +27,8 @@ public class Profile {
   @NotNull
   private String name;
 
-  @NaturalId
+  @NotNull
+  @Email
   private String email;
 
   @NotNull

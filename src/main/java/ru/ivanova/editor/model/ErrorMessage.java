@@ -1,7 +1,10 @@
 package ru.ivanova.editor.model;
 
+import com.sun.istack.NotNull;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import org.springframework.data.annotation.CreatedDate;
@@ -15,8 +18,10 @@ import lombok.Data;
 public class ErrorMessage {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @NotNull
   private String message;
 
   @CreatedDate

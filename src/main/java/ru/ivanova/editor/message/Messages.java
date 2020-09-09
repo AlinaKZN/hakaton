@@ -9,8 +9,8 @@ public class Messages {
 
   public static final String PROFILE_WITH_EMAIL_NOTFOUND = "Профиль с таким email не найден";
 
+  public static final String BAD_TOKEN = "Неверный ключ";
+
   private Messages() {
   }
-
-  ;
 }
