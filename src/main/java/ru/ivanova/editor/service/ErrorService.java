@@ -1,10 +1,10 @@
 package ru.ivanova.editor.service;
 
-import ru.ivanova.editor.model.ErrorMessage;
+import ru.ivanova.editor.dto.ErrorMessageDto;
 
 public interface ErrorService {
 
-  ErrorMessage getMessage();
+  ErrorMessageDto getMessage();
 
-  void addMessage(String message);
+  void log(String message);
 }

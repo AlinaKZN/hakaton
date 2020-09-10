@@ -1,0 +1,211 @@
+{
+  "variables": [],
+  "info": {
+    "name": "profiles",
+    "_postman_id": "35da2fcb-e550-72cb-82bd-b5a19ce586e9",
+    "description": "",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "POST /profiles/set",
+      "request": {
+        "url": "http://localhost:8010/profiles/set",
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic bmFtZTpwYXNzd29yZA==",
+            "description": "",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\" : \"55\",\n\t\"email\" : \"1\",\n\t\"age\": 2\n}"
+        },
+        "description": "Создает запись профиля и присваивает ему id Request: принимает json следующей структурой:\r\n\r\n{ “name”: string “email”: string “age”: int }\r\n\r\nResponses: в случае успеха возвращает id записи пользователя\r\n\r\nstatus 200 { “idUser”: int }\r\n\r\nВ случае некорректного email status 400\r\n\r\n{ “msg”: string }\r\n\r\nВ случае если email уже передавался (реализовать через фильтр) status 403\r\n\r\n{ “msg”: string }"
+      },
+      "response": []
+    },
+    {
+      "name": "POST /profiles/set Duplicate email",
+      "request": {
+        "url": "http://localhost:8010/profiles/set",
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic bmFtZTpwYXNzd29yZA==",
+            "description": "",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\" : \"55\",\n\t\"email\" : \"1\",\n\t\"age\": 2\n}"
+        },
+        "description": "Создает запись профиля и присваивает ему id Request: принимает json следующей структурой:\r\n\r\n{ “name”: string “email”: string “age”: int }\r\n\r\nResponses: в случае успеха возвращает id записи пользователя\r\n\r\nstatus 200 { “idUser”: int }\r\n\r\nВ случае некорректного email status 400\r\n\r\n{ “msg”: string }\r\n\r\nВ случае если email уже передавался (реализовать через фильтр) status 403\r\n\r\n{ “msg”: string }"
+      },
+      "response": []
+    },
+    {
+      "name": "POST /profiles/set Incorrect email",
+      "request": {
+        "url": "http://localhost:8010/profiles/set",
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic bmFtZTpwYXNzd29yZA==",
+            "description": "",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\" : \"55\",\n\t\"email\" : \"1\",\n\t\"age\": 2\n}"
+        },
+        "description": "Создает запись профиля и присваивает ему id Request: принимает json следующей структурой:\r\n\r\n{ “name”: string “email”: string “age”: int }\r\n\r\nResponses: в случае успеха возвращает id записи пользователя\r\n\r\nstatus 200 { “idUser”: int }\r\n\r\nВ случае некорректного email status 400\r\n\r\n{ “msg”: string }\r\n\r\nВ случае если email уже передавался (реализовать через фильтр) status 403\r\n\r\n{ “msg”: string }"
+      },
+      "response": []
+    },
+    {
+      "name": "GET /profiles/last",
+      "request": {
+        "url": "",
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "description": "GET /profiles/last\r\nВозвращает последний созданный профиль\r\n\r\nResponses:\r\nstatus 200\r\n{\r\n\t“id”: int\r\n\t“name”: string\r\n\t“email”: string\r\n\t“age”: int\r\n“created”: timestamp\r\n}\r\n"
+      },
+      "response": []
+    },
+    {
+      "name": "GET /profiles",
+      "request": {
+        "url": "",
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "description": "GET /profiles\r\nВозвращает все созданные профили\r\n\r\nResponses:\r\nstatus 200\r\n[{\r\n\t“id”: int\r\n\t“name”: string\r\n\t“email”: string\r\n\t“age”: int\r\n“created”: timestamp\r\n}...]\r\n\r\n"
+      },
+      "response": []
+    },
+    {
+      "name": "GET /profiles/{ID}",
+      "request": {
+        "url": "http://localhost:8010/profiles/1",
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic bmFtZTpwYXNzd29yZA==",
+            "description": "",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\" : \"2\",\n\t\"email\" : \"2\",\n\t\"age\": 2\n}"
+        },
+        "description": "GET /profiles/{ID}\r\nВозвращает профиль по его ID\r\n\r\nResponses:\r\nstatus 200\r\n{\r\n\t“id”: int\r\n\t“name”: string\r\n\t“email”: string\r\n\t“age”: int\r\n“created”: timestamp\r\n}\r\n\r\nstatus 404 \r\nв случае если запись не найдена\r\n{\r\n\t“msg”: string\r\n}\r\n\r\n"
+      },
+      "response": []
+    },
+    {
+      "name": "POST /profiles/get Not found",
+      "request": {
+        "url": "http://localhost:8010/profiles/get/1",
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic bmFtZTpwYXNzd29yZA==",
+            "description": "",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\" : \"2\",\n\t\"email\" : \"2\",\n\t\"age\": 2\n}"
+        },
+        "description": "POST /profiles/get\r\nВозвращает профиль по email\r\n\r\nRequest:\r\nпринимает json следующей структурой:\r\n\r\n{\r\n\t“email”: string\r\n}\r\n\r\nResponses:\r\nstatus 200\r\n{\r\n\t“id”: int\r\n\t“name”: string\r\n\t“email”: string\r\n\t“age”: int\r\n“created”: timestamp\r\n}\r\n\r\nstatus 404 \r\nв случае если запись не найдена\r\n\r\n{\r\n\t“msg”: string\r\n}\r\n"
+      },
+      "response": []
+    },
+    {
+      "name": "POST /profiles/get",
+      "request": {
+        "url": "http://localhost:8010/profiles/get/1",
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          },
+          {
+            "key": "Authorization",
+            "value": "Basic bmFtZTpwYXNzd29yZA==",
+            "description": "",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\" : \"2\",\n\t\"email\" : \"2\",\n\t\"age\": 2\n}"
+        },
+        "description": "POST /profiles/get\r\nВозвращает профиль по email\r\n\r\nRequest:\r\nпринимает json следующей структурой:\r\n\r\n{\r\n\t“email”: string\r\n}\r\n\r\nResponses:\r\nstatus 200\r\n{\r\n\t“id”: int\r\n\t“name”: string\r\n\t“email”: string\r\n\t“age”: int\r\n“created”: timestamp\r\n}\r\n\r\nstatus 404 \r\nв случае если запись не найдена\r\n\r\n{\r\n\t“msg”: string\r\n}\r\n"
+      },
+      "response": []
+    },
+    {
+      "name": "GET /error/last",
+      "request": {
+        "url": "",
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "description": "GET /error/last\r\nВозвращает сообщение последней ошибки\r\n\r\nResponses:\r\nstatus 200\r\n{\r\n\t“msg”: string\r\n\t“created”: timestamp\r\n}\r\n"
+      },
+      "response": []
+    },
+    {
+      "name": "GET /exit",
+      "request": {
+        "url": "",
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "description": "Производит закрытия приложение"
+      },
+      "response": []
+    }
+  ]
+}

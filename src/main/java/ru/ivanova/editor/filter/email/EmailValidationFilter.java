@@ -2,6 +2,7 @@ package ru.ivanova.editor.filter.email;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.util.Map;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -20,6 +21,7 @@ import ru.ivanova.editor.util.EmailValidator;
 public class EmailValidationFilter implements Filter {
 
   public static final String PROFILE_SET_URL = "/profiles/set";
+  public static final String ERROR_MESSAGE_KEY = "msg";
 
   ProfileService profileService;
 
@@ -33,16 +35,24 @@ public class EmailValidationFilter implements Filter {
     if (profile != null) {
       String email = profile.getEmail();
       if (!EmailValidator.isValid(email)) {
-        errorService.addMessage(Messages.INCORRECT_EMAIL);
-        ((HttpServletResponse) servletResponse).sendError(HttpServletResponse.SC_BAD_REQUEST, Messages.INCORRECT_EMAIL);
+        errorService.log(Messages.INCORRECT_EMAIL);
+        ((HttpServletResponse) servletResponse).setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        servletResponse.getOutputStream().write(restResponseBytes(Map.of(ERROR_MESSAGE_KEY, Messages.INCORRECT_EMAIL)));
         return;
       }
       if (profileService.findByEmail(email).isPresent()) {
-        errorService.addMessage(Messages.DUPLICATE_EMAIL);
-        ((HttpServletResponse) servletResponse).sendError(HttpServletResponse.SC_FORBIDDEN, Messages.DUPLICATE_EMAIL);
+        errorService.log(Messages.DUPLICATE_EMAIL);
+        ((HttpServletResponse) servletResponse).setStatus(HttpServletResponse.SC_FORBIDDEN);
+        servletResponse.getOutputStream().write(restResponseBytes(Map.of(ERROR_MESSAGE_KEY, Messages.DUPLICATE_EMAIL)));
         return;
       }
     }
+
     filterChain.doFilter(requestWrapper, servletResponse);
+  }
+
+  private byte[] restResponseBytes(Map map) throws IOException {
+    String serialized = new ObjectMapper().writeValueAsString(map);
+    return serialized.getBytes();
   }
 }

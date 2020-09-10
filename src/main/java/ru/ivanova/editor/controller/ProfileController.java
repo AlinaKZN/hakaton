@@ -62,8 +62,8 @@ public class ProfileController {
     log.info(REST_URL + "/{}", id);
     Optional<Profile> profile = profileService.findById(id);
     if (!profile.isPresent()) {
-      errorService.addMessage(Messages.PROFILE_WITH_ID_NOTFOUND);
-      Map<String, Object> body = Map.of("message", Messages.PROFILE_WITH_EMAIL_NOTFOUND);
+      errorService.log(Messages.PROFILE_WITH_ID_NOTFOUND);
+      Map<String, Object> body = Map.of("msg", Messages.PROFILE_WITH_EMAIL_NOTFOUND);
       return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
     return ResponseEntity.ok(profile);
@@ -75,7 +75,7 @@ public class ProfileController {
     log.info(REST_URL + "/get/{}", email);
     Optional<Profile> profile = profileService.findByEmail(email);
     if (!profile.isPresent()) {
-      errorService.addMessage(Messages.PROFILE_WITH_ID_NOTFOUND);
+      errorService.log(Messages.PROFILE_WITH_ID_NOTFOUND);
       Map<String, Object> body = Map.of("message", Messages.PROFILE_WITH_EMAIL_NOTFOUND);
       return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }

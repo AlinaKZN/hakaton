@@ -11,6 +11,8 @@ public class Messages {
 
   public static final String BAD_TOKEN = "Неверный ключ";
 
+  public static final String NO_ERRORS = "Ошибок нет";
+
   private Messages() {
   }
 }

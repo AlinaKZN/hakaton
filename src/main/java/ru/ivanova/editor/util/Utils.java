@@ -1,7 +1,9 @@
 package ru.ivanova.editor.util;
 
 import java.util.Date;
+import ru.ivanova.editor.dto.ErrorMessageDto;
 import ru.ivanova.editor.dto.ProfileDto;
+import ru.ivanova.editor.model.ErrorMessage;
 import ru.ivanova.editor.model.Profile;
 
 public class Utils {
@@ -16,8 +18,10 @@ public class Utils {
     return profile;
   }
 
-  private Utils() {
+  public static ErrorMessageDto toMessageDto(ErrorMessage errorMessage) {
+    return (errorMessage == null) ? null : new ErrorMessageDto(errorMessage.getMessage(), errorMessage.getCreated());
   }
 
-  ;
+  private Utils() {
+  }
 }
