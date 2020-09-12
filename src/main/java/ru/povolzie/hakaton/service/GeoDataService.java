@@ -2,7 +2,7 @@ package ru.povolzie.hakaton.service;
 
 import java.util.List;
 import java.util.Optional;
-import ru.povolzie.hakaton.model.GeoData;
+import ru.povolzie.hakaton.model.geodata.GeoData;
 
 public interface GeoDataService {
   GeoData create(GeoData geoData);

@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import ru.povolzie.hakaton.model.GeoData;
+import ru.povolzie.hakaton.model.geodata.GeoData;
 import ru.povolzie.hakaton.repository.GeoDataRepository;
 import ru.povolzie.hakaton.service.GeoDataService;
 

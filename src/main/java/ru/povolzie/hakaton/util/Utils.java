@@ -4,7 +4,7 @@ import java.util.Date;
 import ru.povolzie.hakaton.dto.ErrorMessageDto;
 import ru.povolzie.hakaton.dto.GeoDataDto;
 import ru.povolzie.hakaton.model.ErrorMessage;
-import ru.povolzie.hakaton.model.GeoData;
+import ru.povolzie.hakaton.model.geodata.GeoData;
 
 public class Utils {
 

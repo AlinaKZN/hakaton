@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import ru.povolzie.hakaton.dto.GeoDataDto;
 import ru.povolzie.hakaton.message.Messages;
-import ru.povolzie.hakaton.model.GeoData;
+import ru.povolzie.hakaton.model.geodata.GeoData;
 import ru.povolzie.hakaton.service.ErrorService;
 import ru.povolzie.hakaton.service.GeoDataService;
 import ru.povolzie.hakaton.util.Utils;
