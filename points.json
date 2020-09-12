@@ -1,0 +1,116 @@
+[
+  {
+    "id": 1,
+    "latitude": 55.554771,
+    "longitude": 37.924931,
+    "type": "заправка"
+  },
+  {
+    "id": 2,
+    "latitude": 60.765833,
+    "longitude": 28.808552,
+    "type": "заправка"
+  },
+  {
+    "id": 3,
+    "latitude": 55.798510,
+    "longitude": 37.534730,
+    "type": "заправка"
+  },
+  {
+    "id": 4,
+    "latitude": 55.862126,
+    "longitude": 37.466772,
+    "type": "заправка"
+  },
+  {
+    "id": 5,
+    "latitude": 55.848817,
+    "longitude": 36.805567,
+    "type": "заправка"
+  },
+  {
+    "id": 6,
+    "latitude": 53.041525,
+    "longitude": 158.637171,
+    "type": "заправка"
+  },
+  {
+    "id": 7,
+    "latitude": 55.558834,
+    "longitude": 37.815781,
+    "type": "стройка"
+  },
+  {
+    "id": 8,
+    "latitude": 55.900693,
+    "longitude": 37.478917,
+    "type": "стройка"
+  },
+  {
+    "id": 9,
+    "latitude": 56.359825,
+    "longitude": 37.542558,
+    "type": "стройка"
+  },
+  {
+    "id": 10,
+    "latitude": 53.064992,
+    "longitude": 158.619518,
+    "type": "стройка"
+  },
+  {
+    "id": 11,
+    "latitude": 55.847763,
+    "longitude": 37.636684,
+    "type": "стройка"
+  },
+  {
+    "id": 12,
+    "latitude": 55.728849,
+    "longitude": 37.620321,
+    "type": "банк"
+  },
+  {
+    "id": 13,
+    "latitude": 56.342179,
+    "longitude": 37.523720,
+    "type": "банк"
+  },
+  {
+    "id": 14,
+    "latitude": 56.007639,
+    "longitude": 37.484526,
+    "type": "банк"
+  },
+  {
+    "id": 15,
+    "latitude": 55.782977,
+    "longitude": 37.640659,
+    "type": "банк"
+  },
+  {
+    "id": 16,
+    "latitude": 53.019530,
+    "longitude": 158.647842,
+    "type": "банк"
+  },
+  {
+    "id": 17,
+    "latitude": 55.630446,
+    "longitude": 37.658377,
+    "type": "банк"
+  },
+  {
+    "id": 18,
+    "latitude": 55.633323,
+    "longitude": 37.650055,
+    "type": "банк"
+  },
+  {
+    "id": 19,
+    "latitude": 55.909247,
+    "longitude": 37.590461,
+    "type": "банк"
+  }
+]
