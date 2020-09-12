@@ -10,18 +10,23 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_geodata_id" />
             </column>
-            <column name="name" type="varchar(100)">
-                <constraints nullable="false" unique="true" />
-            </column>
-            <column name="email" type="varchar(255)">
-                <constraints nullable="false" unique="true" />
-            </column>
-            <column name="age" type="numeric">
+            <column name="client_id" type="BIGINT" autoIncrement="true" />
+            <column name="time" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false" />
             </column>
-            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+            <column name="latitude" type="double precision">
                 <constraints nullable="false" />
             </column>
+            <column name="longitude" type="double precision">
+                <constraints nullable="false" />
+            </column>
+            <column name="altitude" type="real">
+                <constraints nullable="false" />
+            </column>
+            <column name="speed" type="real" />
+            <column name="course" type="real" />
+            <column name="sat" type="real" />
+            <column name="name" type="varchar(100)" />
         </createTable>
     </changeSet>
     <changeSet id="2020-09-12-pointofinterest" author="a.ivanova">

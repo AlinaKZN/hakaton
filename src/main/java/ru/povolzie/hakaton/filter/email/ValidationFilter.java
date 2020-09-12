@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import ru.povolzie.hakaton.dto.GeoDataDto;
 import ru.povolzie.hakaton.message.Messages;
-import ru.povolzie.hakaton.service.ErrorService;
 import ru.povolzie.hakaton.service.GeoDataService;
 import ru.povolzie.hakaton.util.EmailValidator;
 
@@ -25,8 +24,6 @@ public class ValidationFilter implements Filter {
 
   GeoDataService geoDataService;
 
-  ErrorService errorService;
-
   @Override
   public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
     HttpServletRequest request = (HttpServletRequest) servletRequest;
@@ -35,17 +32,16 @@ public class ValidationFilter implements Filter {
     if (profile != null) {
       String email = profile.getEmail();
       if (!EmailValidator.isValid(email)) {
-        errorService.log(Messages.INCORRECT_EMAIL);
         ((HttpServletResponse) servletResponse).setStatus(HttpServletResponse.SC_BAD_REQUEST);
         servletResponse.getOutputStream().write(restResponseBytes(Map.of(ERROR_MESSAGE_KEY, Messages.INCORRECT_EMAIL)));
         return;
       }
-      if (geoDataService.findByEmail(email).isPresent()) {
+     /* if (geoDataService.findByEmail(email).isPresent()) {
         errorService.log(Messages.DUPLICATE_EMAIL);
         ((HttpServletResponse) servletResponse).setStatus(HttpServletResponse.SC_FORBIDDEN);
         servletResponse.getOutputStream().write(restResponseBytes(Map.of(ERROR_MESSAGE_KEY, Messages.DUPLICATE_EMAIL)));
         return;
-      }
+      }*/
     }
 
     filterChain.doFilter(requestWrapper, servletResponse);

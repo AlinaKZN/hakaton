@@ -9,9 +9,9 @@ public interface GeoDataService {
 
   List<GeoData> getAll();
 
-  GeoData getLast();
+  //GeoData getLast();
 
   Optional<GeoData> findById(Long aId);
 
-  Optional<GeoData> findByEmail(String aEmail);
+  // Optional<GeoData> findByEmail(String aEmail);
 }

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import ru.povolzie.hakaton.model.point.PointOfInterest;
-import ru.povolzie.hakaton.service.ErrorService;
 import ru.povolzie.hakaton.service.PointOfInterestService;
 
 @RestController
@@ -25,8 +24,6 @@ public class PointOfInterestController {
   static final String REST_URL = "/points";
 
   private PointOfInterestService pointService;
-
-  private ErrorService errorService;
 
   @PostMapping(value = "/setList", consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)

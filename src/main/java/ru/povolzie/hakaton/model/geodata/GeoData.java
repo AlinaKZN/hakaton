@@ -1,12 +1,13 @@
 package ru.povolzie.hakaton.model.geodata;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.CreatedDate;
 import lombok.AllArgsConstructor;
@@ -25,15 +26,28 @@ public class GeoData {
   private Long id;
 
   @NotNull
-  private String name;
-
-  @NotNull
-  @Email
-  private String email;
-
-  @NotNull
-  private int age;
+  @JsonProperty("client_id")
+  private Long clientId;
 
   @CreatedDate
-  private Date created;
+  @JsonFormat(pattern = "dd.MM.yyyy' 'HH:mm")
+  private Date time;
+
+  @NotNull
+  private Float latitude;
+
+  @NotNull
+  private Float longitude;
+
+  @JsonProperty("altitude (m)")
+  private Float altitude;
+
+  @JsonProperty("speed (km/h)")
+  private Float speed;
+
+  private Float course;
+
+  private Float sat;
+
+  private String name;
 }

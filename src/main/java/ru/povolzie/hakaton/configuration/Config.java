@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import lombok.AllArgsConstructor;
 import ru.povolzie.hakaton.filter.email.ValidationFilter;
 import ru.povolzie.hakaton.filter.security.TokenProvider;
-import ru.povolzie.hakaton.service.ErrorService;
 import ru.povolzie.hakaton.service.GeoDataService;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -20,15 +19,13 @@ public class Config {
 
   GeoDataService geoDataService;
 
-  ErrorService errorService;
-
   TokenProvider tokenProvider;
 
   @Bean
   public FilterRegistrationBean<ValidationFilter> emailValidatorFilterRegistrationBean() {
     FilterRegistrationBean<ValidationFilter> registrationBean
         = new FilterRegistrationBean<>();
-    registrationBean.setFilter(new ValidationFilter(geoDataService, errorService));
+    registrationBean.setFilter(new ValidationFilter(geoDataService));
     registrationBean.addUrlPatterns(ValidationFilter.GEODATA_SET_URL);
     registrationBean.setOrder(2);
     return registrationBean;

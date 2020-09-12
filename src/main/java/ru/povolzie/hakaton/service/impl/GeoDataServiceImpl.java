@@ -19,35 +19,35 @@ public class GeoDataServiceImpl implements GeoDataService {
   @Override
   public GeoData create(GeoData geoData) {
     GeoData createdGeoData = geoDataRepository.save(geoData);
-    log.info("Created profile {}", createdGeoData);
+    log.info("Created geoData {}", createdGeoData);
     return createdGeoData;
   }
 
   @Override
   public List<GeoData> getAll() {
     List<GeoData> geoData = geoDataRepository.findAll();
-    log.info("Found {} profiles", geoData.size());
+    log.info("Found {} geoData", geoData.size());
     return geoData;
   }
 
-  @Override
+/*  @Override
   public GeoData getLast() {
     GeoData geoData = geoDataRepository.findTopByOrderByCreatedDesc();
-    log.info("Last profile is {}", geoData);
+    log.info("Last geoData is {}", geoData);
     return geoData;
-  }
+  }*/
 
   @Override
   public Optional<GeoData> findById(Long aId) {
     Optional<GeoData> profile = geoDataRepository.findById(aId);
-    log.info("Profile with id={} is {}", aId, profile);
+    log.info("geoData with id={} is {}", aId, profile);
     return profile;
   }
-
+/*
   @Override
   public Optional<GeoData> findByEmail(String aEmail) {
     Optional<GeoData> profile = geoDataRepository.findByEmailIgnoreCase(aEmail);
     log.info("Profile with email={} is {}", aEmail, profile);
     return profile;
-  }
+  }*/
 }

@@ -17,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 import ru.povolzie.hakaton.dto.GeoDataDto;
 import ru.povolzie.hakaton.message.Messages;
 import ru.povolzie.hakaton.model.geodata.GeoData;
-import ru.povolzie.hakaton.service.ErrorService;
 import ru.povolzie.hakaton.service.GeoDataService;
 import ru.povolzie.hakaton.util.Utils;
 
@@ -30,8 +29,6 @@ public class GeoDataController {
 
   private GeoDataService geoDataService;
 
-  private ErrorService errorService;
-
   @PostMapping(value = "/set", consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity create(@RequestBody GeoDataDto geoData) {
@@ -40,7 +37,7 @@ public class GeoDataController {
     return ResponseEntity.ok(createdGeoData.getId());
   }
 
-  @GetMapping(value = "/last")
+ /* @GetMapping(value = "/last")
   public ResponseEntity getLastProfile() {
     log.info(REST_URL + "/last");
     GeoData geoData = geoDataService.getLast();
@@ -48,7 +45,7 @@ public class GeoDataController {
       return ResponseEntity.ok(geoData);
     }
     return new ResponseEntity(HttpStatus.NO_CONTENT);
-  }
+  }*/
 
   @GetMapping
   public ResponseEntity getAllProfiles() {
@@ -62,14 +59,13 @@ public class GeoDataController {
     log.info(REST_URL + "/{}", id);
     Optional<GeoData> geoData = geoDataService.findById(id);
     if (!geoData.isPresent()) {
-      errorService.log(Messages.PROFILE_WITH_ID_NOTFOUND);
       Map<String, Object> body = Map.of("msg", Messages.PROFILE_WITH_EMAIL_NOTFOUND);
       return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
     return ResponseEntity.ok(geoData);
   }
 
-  @PostMapping(value = "/get")
+ /* @PostMapping(value = "/get")
   public ResponseEntity getGeoData(@RequestBody GeoDataDto geoDataDto) {
     String email = geoDataDto.getEmail();
     log.info(REST_URL + "/get/{}", email);
@@ -80,5 +76,5 @@ public class GeoDataController {
       return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
     return ResponseEntity.ok(profile);
-  }
+  }*/
 }
