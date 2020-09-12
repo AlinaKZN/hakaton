@@ -36,4 +36,11 @@ public class PointOfInterestServiceImpl implements PointOfInterestService {
     log.info("Point with id={} is {}", aId, point);
     return point;
   }
+
+  @Override
+  public List<PointOfInterest> getNear(Float latitude, Float longitude) {
+    List<PointOfInterest> points = pointRepository.getNear(latitude, longitude);
+
+    return points;
+  }
 }

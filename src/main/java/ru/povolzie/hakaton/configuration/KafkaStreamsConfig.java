@@ -22,6 +22,7 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 import lombok.extern.slf4j.Slf4j;
 import ru.povolzie.hakaton.model.geodata.GeoData;
+import ru.povolzie.hakaton.service.AnalyzerService;
 import ru.povolzie.hakaton.service.GeoDataService;
 
 @Slf4j
@@ -29,6 +30,9 @@ import ru.povolzie.hakaton.service.GeoDataService;
 @EnableKafka
 @EnableKafkaStreams
 public class KafkaStreamsConfig {
+
+  @Autowired
+  AnalyzerService analyzerService;
 
   @Autowired
   GeoDataService geoDataService;
@@ -51,12 +55,12 @@ public class KafkaStreamsConfig {
   @Bean
   public KStream<String, GeoData> kStream(StreamsBuilder kStreamBuilder) {
     KStream<String, String> stream = kStreamBuilder
-        .stream("input1", Consumed.with(Serdes.String(), Serdes.String()));
-    KStream<String, GeoData> userStream = stream
+        .stream("input21", Consumed.with(Serdes.String(), Serdes.String()));
+    KStream<String, GeoData> geoStream = stream
         .mapValues(this::getFromString);
     //  .filter((key, value) -> value.getBalance() <= 0);
-    userStream.to("out", Produced.with(Serdes.String(), userSerde()));
-    return userStream;
+    geoStream.to("out", Produced.with(Serdes.String(), userSerde()));
+    return geoStream;
   }
 
   @Bean
@@ -69,6 +73,7 @@ public class KafkaStreamsConfig {
     try {
       geodata = objectMapper().readValue(str, GeoData.class);
       geoDataService.create(geodata);
+      analyzerService.create(geodata);
     } catch (JsonProcessingException e) {
       log.error(e.getMessage(), e);
     }

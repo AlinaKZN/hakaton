@@ -10,4 +10,6 @@ public interface PointOfInterestService {
   List<PointOfInterest> getAll();
 
   Optional<PointOfInterest> findById(Long aId);
+
+  List<PointOfInterest> getNear(Float latitude, Float longitude);
 }
