@@ -12,6 +12,7 @@ import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Produced;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -37,11 +38,17 @@ public class KafkaStreamsConfig {
   @Autowired
   GeoDataService geoDataService;
 
+  @Value("${bootstrap.server.config}")
+  private String server;
+
+  @Value("${bootstrap.server.input}")
+  private String input;
+
   @Bean(name = KafkaStreamsDefaultConfiguration.DEFAULT_STREAMS_CONFIG_BEAN_NAME)
   public KafkaStreamsConfiguration kStreamsConfigs() {
     Map<String, Object> props = new HashMap<>();
     props.put(StreamsConfig.APPLICATION_ID_CONFIG, "0");//0?
-    props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "gpbtask.fun:9092");
+    props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, server);
     props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
     props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
     return new KafkaStreamsConfiguration(props);
@@ -55,7 +62,7 @@ public class KafkaStreamsConfig {
   @Bean
   public KStream<String, GeoData> kStream(StreamsBuilder kStreamBuilder) {
     KStream<String, String> stream = kStreamBuilder
-        .stream("input21", Consumed.with(Serdes.String(), Serdes.String()));
+        .stream(input, Consumed.with(Serdes.String(), Serdes.String()));
     KStream<String, GeoData> geoStream = stream
         .mapValues(this::getFromString);
     //  .filter((key, value) -> value.getBalance() <= 0);

@@ -20,9 +20,7 @@
             <column name="longitude" type="double precision">
                 <constraints nullable="false" />
             </column>
-            <column name="altitude" type="real">
-                <constraints nullable="false" />
-            </column>
+            <column name="altitude" type="real" />
             <column name="speed" type="real" />
             <column name="course" type="real" />
             <column name="sat" type="real" />
@@ -46,6 +44,18 @@
             <!--column name="type_id" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_pointofinterest_id" />
             </column-->
+        </createTable>
+    </changeSet>
+    <changeSet id="2020-09-12-event" author="a.ivanova">
+        <createTable tableName="event">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_event_id" />
+            </column>
+            <column name="client_id" type="BIGINT" autoIncrement="true" />
+            <column name="point_id" type="BIGINT" autoIncrement="true" />
+            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
         </createTable>
     </changeSet>
     <!--changeSet id="2020-09-12-pointtype" author="a.ivanova">

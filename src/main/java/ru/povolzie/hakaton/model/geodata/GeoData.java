@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import org.springframework.data.annotation.CreatedDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +28,6 @@ public class GeoData {
   @JsonProperty("client_id")
   private Long clientId;
 
-  @CreatedDate
   @JsonFormat(pattern = "dd.MM.yyyy' 'HH:mm")
   private Date time;
 

@@ -1,5 +1,6 @@
-package ru.povolzie.hakaton.model.decision;
+package ru.povolzie.hakaton.model.event;
 
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,17 +8,18 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import org.springframework.data.annotation.CreatedDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.povolzie.hakaton.model.point.PointOfInterest;
 
 @Entity
-@Table(name = "decision")
+@Table(name = "event")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Offer {
+public class Event {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,4 +30,7 @@ public class Offer {
 
   @OneToOne
   private PointOfInterest point;
+
+  @CreatedDate
+  private Date created;
 }

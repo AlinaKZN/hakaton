@@ -9,6 +9,6 @@ import ru.povolzie.hakaton.model.point.PointOfInterest;
 @Repository
 public interface PointRepository extends JpaRepository<PointOfInterest, Long> {
 
-  @Query(value = "select poi from point_of_interest poi where ((:x-poi.latitude)^2+(:y-poi.longitude)^2)<100", nativeQuery = true)
+  @Query(value = "select * from point_of_interest poi where ((:x-poi.latitude)^2+(:y-poi.longitude)^2)<100", nativeQuery = true)
   public List<PointOfInterest> getNear(Float x, Float y);
 }

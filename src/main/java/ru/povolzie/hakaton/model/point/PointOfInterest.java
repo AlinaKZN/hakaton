@@ -27,8 +27,5 @@ public class PointOfInterest {
   private Float longitude;
 
   @NotNull
-  private String name;
-
-  @NotNull
   private String type;
 }

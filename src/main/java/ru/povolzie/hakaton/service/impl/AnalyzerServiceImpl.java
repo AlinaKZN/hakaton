@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import ru.povolzie.hakaton.model.decision.Offer;
+import ru.povolzie.hakaton.model.event.Event;
 import ru.povolzie.hakaton.model.geodata.GeoData;
 import ru.povolzie.hakaton.model.point.PointOfInterest;
 import ru.povolzie.hakaton.repository.AnalyzerRepository;
@@ -22,22 +22,22 @@ public class AnalyzerServiceImpl implements AnalyzerService {
   AnalyzerRepository analyzerRepository;
 
   @Override
-  public List<Offer> create(GeoData geoData) {
+  public List<Event> create(GeoData geoData) {
     log.info("create offers");
     List<PointOfInterest> points = pointOfInterestService.getNear(geoData.getLatitude(), geoData.getLongitude());
-    List<Offer> offers = new ArrayList<>();
+    List<Event> events = new ArrayList<>();
     if (points != null) {
       for (PointOfInterest point : points) {
-        Offer offer = new Offer(null, geoData.getClientId(), point);
-        offers.add(create(offer));
+        Event event = new Event(null, geoData.getClientId(), point, geoData.getTime());
+        events.add(create(event));
       }
     }
-    return offers;
+    return events;
   }
 
   @Override
-  public Offer create(Offer offer) {
+  public Event create(Event event) {
     log.info("create offer");
-    return analyzerRepository.save(offer);
+    return analyzerRepository.save(event);
   }
 }
