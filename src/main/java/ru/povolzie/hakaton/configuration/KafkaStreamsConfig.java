@@ -3,7 +3,6 @@ package ru.povolzie.hakaton.configuration;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
@@ -24,11 +23,9 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 import lombok.extern.slf4j.Slf4j;
 import ru.povolzie.hakaton.model.geodata.GeoData;
-import ru.povolzie.hakaton.model.point.PointOfInterest;
 import ru.povolzie.hakaton.service.AnalyzerService;
 import ru.povolzie.hakaton.service.GeoDataService;
 import ru.povolzie.hakaton.service.PointOfInterestService;
-import ru.povolzie.hakaton.util.PointsParser;
 
 @Slf4j
 @Configuration
@@ -68,7 +65,6 @@ public class KafkaStreamsConfig {
 
   @Bean
   public KStream<String, GeoData> kStream(StreamsBuilder kStreamBuilder) {
-    createPointsOfInterest();
     KStream<String, String> stream = kStreamBuilder
         .stream(input, Consumed.with(Serdes.String(), Serdes.String()));
     KStream<String, GeoData> geoStream = stream
@@ -76,13 +72,6 @@ public class KafkaStreamsConfig {
     //  .filter((key, value) -> value.getBalance() <= 0);
     geoStream.to("out", Produced.with(Serdes.String(), userSerde()));
     return geoStream;
-  }
-
-  private void createPointsOfInterest() {
-    if (pointOfInterestService.getAll().isEmpty()) {
-      List<PointOfInterest> pointsOfInterest = PointsParser.parse();
-      pointsOfInterest.forEach(p -> pointOfInterestService.create(p));
-    }
   }
 
   @Bean

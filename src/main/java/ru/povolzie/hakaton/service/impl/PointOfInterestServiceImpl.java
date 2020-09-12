@@ -2,12 +2,14 @@ package ru.povolzie.hakaton.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import ru.povolzie.hakaton.model.point.PointOfInterest;
 import ru.povolzie.hakaton.repository.PointRepository;
 import ru.povolzie.hakaton.service.PointOfInterestService;
+import ru.povolzie.hakaton.util.PointsParser;
 
 @Service
 @Slf4j
@@ -15,6 +17,14 @@ import ru.povolzie.hakaton.service.PointOfInterestService;
 public class PointOfInterestServiceImpl implements PointOfInterestService {
 
   private PointRepository pointRepository;
+
+  @PostConstruct
+  public void doTask() {
+    if (getAll().isEmpty()) {
+      List<PointOfInterest> pointsOfInterest = PointsParser.parse();
+      pointsOfInterest.forEach(p -> create(p));
+    }
+  }
 
   @Override
   public PointOfInterest create(PointOfInterest point) {
